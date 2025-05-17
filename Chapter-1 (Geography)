@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Class 10 Social Science</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 40px;
+    }
+    h1 {
+      color: darkgreen;
+    }
+    .chapter {
+      background-color: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-left: 6px solid #4CAF50;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Class 10 Social Science</h1>
+
+  <div class="chapter">
+    <h2>Chapter 1: Resources and Development</h2>
+    <p>Understand the classification of resources, types of soil, and conservation methods.</p>
+    <button onclick="alert('Quiz feature coming soon!')">Take Quiz</button>
+  </div>
+
+  <div class="chapter">
+    <h2>Chapter 2: Federalism</h2>
+    <p>Explore how power is divided between the central and state governments in India.</p>
+    <button onclick="alert('Activity coming soon!')">View Activity</button>
+  </div>
+
+  <div class="chapter">
+    <h2>Chapter 3: Development</h2>
+    <p>Learn what development means, and how it is measured and understood differently by people.</p>
+    <button onclick="alert('Resources coming soon!')">Read More</button>
+  </div>
+</body>
+</html>
