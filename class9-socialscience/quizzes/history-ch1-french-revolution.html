@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quiz – The French Revolution</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background: #f0f8ff; }
+    h1 { color: #2b6cb0; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 20px; background-color: #2b6cb0; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 30px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>📘 Quiz: The French Revolution</h1>
+
+  <form id="quizForm">
+
+    <div class="question">
+      <p>1. When did the French Revolution begin?</p>
+      <input type="radio" name="q1" value="a"> 1789<br>
+      <input type="radio" name="q1" value="b"> 1776<br>
+      <input type="radio" name="q1" value="c"> 1815<br>
+    </div>
+
+    <div class="question">
+      <p>2. What was the name of the fortress prison stormed by the revolutionaries?</p>
+      <input type="radio" name="q2" value="a"> Versailles<br>
+      <input type="radio" name="q2" value="b"> The Louvre<br>
+      <input type="radio" name="q2" value="c"> Bastille<br>
+    </div>
+
+    <div class="question">
+      <p>3. Who was the king of France during the revolution?</p>
+      <input type="radio" name="q3" value="a"> Louis XVI<br>
+      <input type="radio" name="q3" value="b"> Louis XIV<br>
+      <input type="radio" name="q3" value="c"> Napoleon<br>
+    </div>
+
+    <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <script>
+    function checkAnswers() {
+      let total = 3;
+      let score = 0;
+
+      let q1 = document.querySelector('input[name="q1"]:checked');
+      let q2 = document.querySelector('input[name="q2"]:checked');
+      let q3 = document.querySelector('input[name="q3"]:checked');
+
+      if(q1 && q1.value === "a") score++;
+      if(q2 && q2.value === "c") score++;
+      if(q3 && q3.value === "a") score++;
+
+      let percent = Math.round((score / total) * 100);
+      document.getElementById("result").innerHTML = `✅ You got ${score} out of ${total} correct (${percent}%)`;
+    }
+  </script>
+
+</body>
+</html>
