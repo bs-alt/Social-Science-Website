@@ -1,2 +1,2 @@
-# Social-Science-Website
+# Social Science
 Interactive notes and Question Answers etc.
