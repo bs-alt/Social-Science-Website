@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quick Quiz – Nazism and the Rise of Hitler</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background: #f4faff; }
+    h1 { color: #2b6cb0; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 20px; background-color: #2b6cb0; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 30px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>🟢 Quick Quiz – Nazism and the Rise of Hitler</h1>
+  <form id="quizForm">
+
+<script>
+const questions = [
+  {
+    q: "1. In which year was the Nazi Party founded?",
+    options: ["1919", "1933", "1939", "1945"],
+    correct: 0
+  },
+  {
+    q: "2. Who became the leader of the Nazi Party in 1921?",
+    options: ["Adolf Hitler", "Joseph Goebbels", "Hermann G\u00f6ring", "Heinrich Himmler"],
+    correct: 0
+  },
+  {
+    q: "3. What symbol was used by the Nazi Party?",
+    options: ["Hammer and Sickle", "Swastika", "Red Star", "Rising Sun"],
+    correct: 1
+  },
+  {
+    q: "4. Which event in 1933 helped Hitler gain emergency powers?",
+    options: ["Reichstag Fire", "Kristallnacht", "Munich Agreement", "Nuremberg Trials"],
+    correct: 0
+  },
+  {
+    q: "5. What was the name of the Nazi secret police?",
+    options: ["Gestapo", "Stasi", "NKVD", "CIA"],
+    correct: 0
+  }
+];
+
+let quizForm = document.getElementById('quizForm');
+questions.forEach((q, i) => {
+  let div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<p>${q.q}</p>` + q.options.map((opt, j) =>
+    `<label><input type=\"radio\" name=\"q${i}\" value=\"${j}\"> ${opt}</label><br>`).join('');
+  quizForm.insertBefore(div, quizForm.lastElementChild);
+});
+
+function checkAnswers() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    let selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected && parseInt(selected.value) === q.correct) {
+      score++;
+    }
+  });
+  let percent = Math.round((score / questions.length) * 100);
+  document.getElementById("result").innerHTML = `✅ You got ${score} out of ${questions.length} correct (${percent}%)`;
+}
+</script>
+
+    <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+</body>
+</html>
