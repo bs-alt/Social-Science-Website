@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quick Quiz – The French Revolution</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background: #f4faff; }
+    h1 { color: #2b6cb0; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 20px; background-color: #2b6cb0; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 30px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>🟢 Quick Quiz – The French Revolution</h1>
+  <form id="quizForm">
+
+<script>
+const questions = [
+  {
+    q: "1. When did the French Revolution begin?",
+    options: ["1776", "1789", "1804", "1815"],
+    correct: 1
+  },
+  {
+    q: "2. What was the name of the prison stormed on 14 July 1789?",
+    options: ["Versailles", "The Louvre", "The Bastille", "The Tribunal"],
+    correct: 2
+  },
+  {
+    q: "3. Who was the king of France during the French Revolution?",
+    options: ["Louis XIV", "Louis XV", "Louis XVI", "Napoleon"],
+    correct: 2
+  },
+  {
+    q: "4. What was the slogan of the French Revolution?",
+    options: ["Power to the People", "Unity and Strength", "Liberty, Equality, Fraternity", "Victory and Justice"],
+    correct: 2
+  },
+  {
+    q: "5. What was the National Assembly?",
+    options: ["New Military Force", "Parliament of Third Estate", "Royal Committee", "Secret Club"],
+    correct: 1
+  }
+];
+
+let quizForm = document.getElementById('quizForm');
+questions.forEach((q, i) => {
+  let div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<p>${q.q}</p>` + q.options.map((opt, j) =>
+    `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`).join('');
+  quizForm.insertBefore(div, quizForm.lastElementChild);
+});
+
+function checkAnswers() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    let selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected && parseInt(selected.value) === q.correct) {
+      score++;
+    }
+  });
+  let percent = Math.round((score / questions.length) * 100);
+  document.getElementById("result").innerHTML = `✅ You got ${score} out of ${questions.length} correct (${percent}%)`;
+}
+</script>
+
+    <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+</body>
+</html>
