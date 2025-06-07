@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quick Quiz – The Story of Village Palampur</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background: #f4faff; }
+    h1 { color: #2b6cb0; }
+    .question { margin-bottom: 20px; }
+    button { padding: 10px 20px; background-color: #2b6cb0; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 30px; font-size: 18px; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>🟢 Quick Quiz – The Story of Village Palampur</h1>
+  <form id="quizForm">
+
+<script>
+const questions = [
+  {
+    q: "1. What is the main occupation of most people in Palampur?",
+    options: ["Farming", "Weaving", "Trade", "Factory work"],
+    correct: 0
+  },
+  {
+    q: "2. Which facility helped expand irrigation in Palampur?",
+    options: ["Persian wheels", "Tube wells", "Canals", "Tanks"],
+    correct: 1
+  },
+  {
+    q: "3. Which crop is typically grown in the rabi season in Palampur?",
+    options: ["Jowar", "Bajra", "Wheat", "Maize"],
+    correct: 2
+  },
+  {
+    q: "4. What does the term 'multiple cropping' mean?",
+    options: ["Growing a single crop", "Growing two or more crops on the same field in a year", "Using more chemical fertilisers", "Growing crops using only machines"],
+    correct: 1
+  },
+  {
+    q: "5. Which factor of production includes tools and machinery?",
+    options: ["Land", "Labour", "Physical capital", "Human capital"],
+    correct: 2
+  },
+  {
+    q: "6. Why do small farmers often borrow money from large farmers or traders?",
+    options: ["To buy mobile phones", "To buy seeds and fertilisers", "To go on vacations", "To pay school fees"],
+    correct: 1
+  },
+  {
+    q: "7. Which of the following is a non-farm activity found in Palampur?",
+    options: ["Dairy", "Wheat farming", "Sugarcane cultivation", "Paddy farming"],
+    correct: 0
+  },
+  {
+    q: "8. About what proportion of Palampur's land is irrigated?",
+    options: ["Less than 10%", "Around half", "More than 75%", "Almost none"],
+    correct: 2
+  },
+  {
+    q: "9. Large farmers in Palampur generally employ which kind of workers?",
+    options: ["Government officials", "Hired labourers", "Doctors", "Carpenters"],
+    correct: 1
+  },
+  {
+    q: "10. Palampur is best described as a:",
+    options: ["Real historical village", "Hypothetical example", "Large industrial city", "Seaside resort"],
+    correct: 1
+  }
+];
+
+let quizForm = document.getElementById('quizForm');
+questions.forEach((q, i) => {
+  let div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<p>${q.q}</p>` + q.options.map((opt, j) =>
+    `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`).join('');
+  quizForm.insertBefore(div, quizForm.lastElementChild);
+});
+
+function checkAnswers() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    let selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected && parseInt(selected.value) === q.correct) {
+      score++;
+    }
+  });
+  let percent = Math.round((score / questions.length) * 100);
+  document.getElementById("result").innerHTML = `✅ You got ${score} out of ${questions.length} correct (${percent}%)`;
+}
+</script>
+
+    <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+</body>
+</html>
