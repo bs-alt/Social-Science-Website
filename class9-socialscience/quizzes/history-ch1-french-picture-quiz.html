@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Picture Quiz – The French Revolution</title>
+  <style>
+    body { font-family: Arial; margin: 40px; background: #f4faff; }
+    h1 { color: #2b6cb0; }
+    .question { margin-bottom: 30px; }
+    img { max-width: 100%; height: auto; display: block; margin-bottom: 10px; }
+    button { padding: 10px 20px; background-color: #2b6cb0; color: white; border: none; cursor: pointer; }
+    .result { margin-top: 30px; font-size: 18px; font-weight: bold; }
+    .answers { margin-top: 40px; }
+  </style>
+</head>
+<body>
+
+  <h1>🖼️ Picture Quiz – The French Revolution</h1>
+  <form id="quizForm">
+
+<script>
+const questions = [
+  {
+    img: "https://upload.wikimedia.org/wikipedia/commons/6/68/Jean-Pierre_Houillettes_-_Prise_de_la_Bastille.jpg",
+    q: "1. What major event of July 14, 1789 is shown in this painting?",
+    options: ["Coronation of Napoleon", "Storming of the Bastille", "Women’s March to Versailles", "Tennis Court Oath"],
+    correct: 1
+  },
+  {
+    img: "https://upload.wikimedia.org/wikipedia/commons/1/1f/Women%27s_March_on_Versailles01.jpg",
+    q: "2. Which action by Parisian women is depicted here?",
+    options: ["Storming of the Bastille", "Women’s March to Versailles", "The September Massacres", "Festival of the Supreme Being"],
+    correct: 1
+  },
+  {
+    img: "https://upload.wikimedia.org/wikipedia/commons/1/16/Execution_of_Louis_XVI.png",
+    q: "3. Which dramatic event of 1793 is shown in this picture?",
+    options: ["Execution of Louis XVI", "Coronation of Louis XVI", "Storming of the Bastille", "Rise of Napoleon"],
+    correct: 0
+  },
+  {
+    img: "https://upload.wikimedia.org/wikipedia/commons/2/29/Robespierre.jpg",
+    q: "4. Identify this revolutionary leader, head of the Committee of Public Safety.",
+    options: ["Georges Danton", "Maximilien Robespierre", "Jean-Paul Marat", "Mirabeau"],
+    correct: 1
+  },
+  {
+    img: "https://upload.wikimedia.org/wikipedia/commons/7/71/Declaration_of_Rights_of_Man_and_of_the_Citizen_in_1789.jpg",
+    q: "5. This document proclaimed universal rights in 1789. What is it called?",
+    options: ["Napoleonic Code", "The Constitution of 1791", "Declaration of the Rights of Man and of the Citizen", "Civil Constitution of the Clergy"],
+    correct: 2
+  }
+];
+
+let quizForm = document.getElementById('quizForm');
+questions.forEach((q, i) => {
+  let div = document.createElement('div');
+  div.classList.add('question');
+  div.innerHTML = `<img src="${q.img}" alt="Question image ${i+1}"><p>${q.q}</p>` +
+    q.options.map((opt, j) =>
+      `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`).join('');
+  quizForm.insertBefore(div, quizForm.lastElementChild);
+});
+
+function checkAnswers() {
+  let score = 0;
+  questions.forEach((q, i) => {
+    let selected = document.querySelector(`input[name="q${i}"]:checked`);
+    if (selected && parseInt(selected.value) === q.correct) {
+      score++;
+    }
+  });
+  let percent = Math.round((score / questions.length) * 100);
+  document.getElementById("result").innerHTML = `✅ You got ${score} out of ${questions.length} correct (${percent}%)`;
+}
+</script>
+
+    <button type="button" onclick="checkAnswers()">Submit Quiz</button>
+  </form>
+
+  <div class="result" id="result"></div>
+
+  <div class="answers">
+    <h2>Answer Key</h2>
+    <ol>
+      <li>Storming of the Bastille</li>
+      <li>Women’s March to Versailles</li>
+      <li>Execution of Louis XVI</li>
+      <li>Maximilien Robespierre</li>
+      <li>Declaration of the Rights of Man and of the Citizen</li>
+    </ol>
+  </div>
+
+</body>
+</html>
